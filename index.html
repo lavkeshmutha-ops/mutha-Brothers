@@ -971,7 +971,7 @@
     </footer>
 
     <script>
-    // 1. Initialize AOS (Animate On Scroll)
+    // 1. Initialize Animation Library
     AOS.init({
         duration: 800,
         once: true,
@@ -979,12 +979,15 @@
     });
 
     // 2. Dynamic Copyright Year
-    document.getElementById('copyright-year').innerText = new Date().getFullYear();
+    const yearSpan = document.getElementById('copyright-year');
+    if(yearSpan) {
+        yearSpan.innerText = new Date().getFullYear();
+    }
 
     // 3. Mobile Menu Logic
     const mobileBtn = document.getElementById('mobile-btn');
     const mobileMenu = document.getElementById('mobile-menu');
-    const menuIcon = document.getElementById('menu-icon'); 
+    const menuIcon = document.getElementById('menu-icon');
     const mobileLinks = document.querySelectorAll('#mobile-menu a');
 
     if (mobileBtn && mobileMenu) {
@@ -1008,7 +1011,7 @@
     }
 
     // 4. Lightbox Logic (Image Zoom)
-    const lightboxOverlay = document.getElementById('lightbox'); 
+    const lightboxOverlay = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const lightboxCaption = document.getElementById('lightbox-caption');
 
@@ -1028,7 +1031,7 @@
         }
     };
 
-    // 5. Store Status Logic (Updates Header Banner & Location Card)
+    // 5. STORE STATUS LOGIC (Morning & Evening Shifts)
     function updateStoreStatus() {
         const now = new Date();
         const day = now.getDay(); // 0=Sun, 6=Sat
@@ -1036,11 +1039,13 @@
         const minutes = now.getMinutes();
         const currentTime = hour + minutes / 60;
 
-        // Configuration: Shift Times
-        const morningOpen = 9.5;   // 9:30 AM
-        const morningClose = 13.5; // 1:30 PM
-        const eveningOpen = 15.5;  // 3:30 PM
-        const eveningClose = 21.5; // 9:30 PM
+        // Configuration: Shift Times (24h format decimal)
+        // Morning: 9:30 AM (9.5) to 1:30 PM (13.5)
+        // Evening: 3:30 PM (15.5) to 9:30 PM (21.5)
+        const morningOpen = 9.5;   
+        const morningClose = 13.5; 
+        const eveningOpen = 15.5;  
+        const eveningClose = 21.5; 
         
         const isSaturday = (day === 6);
 
@@ -1050,18 +1055,18 @@
             (currentTime >= eveningOpen && currentTime < eveningClose)
         );
 
-        // Status HTML Templates
+        // HTML Templates
         const htmlOpen = '<span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span><span class="text-green-600 font-bold uppercase text-xs">Open Now</span></span>';
         const htmlClosed = '<span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-red-500"></span><span class="text-red-500 font-bold uppercase text-xs">Closed Now</span></span>';
         const htmlSat = '<span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-red-500"></span><span class="text-red-500 font-bold uppercase text-xs">Closed (Sat)</span></span>';
 
         let resultHtml = isOpen ? htmlOpen : (isSaturday ? htmlSat : htmlClosed);
 
-        // Update Header Badge (if exists)
+        // Update Header Badge
         const headerBadge = document.getElementById('status-badge');
         if (headerBadge) headerBadge.innerHTML = resultHtml;
 
-        // Update Location Card Badge (if exists)
+        // Update Location Card Badge
         const cardBadge = document.getElementById('card-status-badge');
         if (cardBadge) {
             if (isSaturday) {
@@ -1077,27 +1082,25 @@
         }
     }
 
-    // Run status check immediately on load
+    // Run immediately
     updateStoreStatus();
-    
-    // Check again every minute (so it updates automatically without refreshing)
+    // Update every minute
     setInterval(updateStoreStatus, 60000); 
 
-    // 6. Smooth Scrolling for Anchor Links
+    // 6. Smooth Scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
             const targetElement = document.querySelector(targetId);
-            
             if (targetElement) {
                 window.scrollTo({
-                    top: targetElement.offsetTop - 80, // Offset for sticky header
+                    top: targetElement.offsetTop - 80, 
                     behavior: 'smooth'
                 });
             }
         });
     });
-    </script>
+</script>
 </body>
 </html>
