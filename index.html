@@ -771,7 +771,7 @@
         }
     });
 </script>
-     <section id="location" class="py-24 bg-white relative">
+ <section id="location" class="py-24 bg-white relative">
     <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         
         <div data-aos="fade-right">
@@ -823,13 +823,13 @@
                             </div>
                             <div>
                                 <h4 class="font-bold uppercase text-xs tracking-widest text-gray-400">Opening Hours</h4>
-                                <p class="text-xs text-gray-500 font-medium">Monday to Sunday</p>
+                                <p class="text-xs text-gray-500 font-medium">Weekly Schedule</p>
                             </div>
                         </div>
                         
-                        <div class="bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-bold px-3 py-1 rounded-md shadow-sm uppercase tracking-wide flex items-center gap-1.5">
-                            <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
-                            Sat Closed
+                        <div id="store-status-badge" class="bg-red-500/10 border border-red-500/20 text-red-400 text-xs font-bold px-3 py-1 rounded-md shadow-sm uppercase tracking-wide flex items-center gap-1.5 transition-colors duration-300">
+                            <span id="store-status-dot" class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
+                            <span id="store-status-text">Closed Now</span>
                         </div>
                     </div>
 
@@ -850,6 +850,7 @@
         <div class="h-[500px] w-full bg-white rounded-3xl overflow-hidden shadow-2xl border-4 border-white relative group" data-aos="fade-left">
             <iframe 
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.3881608775364!2d73.79556367496615!3d18.646569782471555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b8339c7a13a1%3A0xf5d0de3720fe2586!2sMUTHA%20Brothers%20Food!5e0!3m2!1sen!2sin!4v1766583132203!5m2!1sen!2sin" 
+                class="w-full h-full object-cover"
                 loading="lazy" 
                 referrerpolicy="no-referrer-when-downgrade">
             </iframe>
@@ -862,6 +863,77 @@
         </div>
 
     </div>
+
+    <script>
+        (function() {
+            function updateStoreStatus() {
+                const now = new Date();
+                const day = now.getDay(); // 0=Sun, 6=Sat
+                const hours = now.getHours();
+                const minutes = now.getMinutes();
+                
+                // Convert current time to total minutes for easier comparison
+                const currentTimeInMinutes = hours * 60 + minutes;
+
+                // Time slots in minutes
+                // 9:30 AM = 570 mins
+                // 1:30 PM = 13:30 = 810 mins
+                // 3:30 PM = 15:30 = 930 mins
+                // 9:30 PM = 21:30 = 1290 mins
+                
+                const morningOpen = 570;
+                const morningClose = 810;
+                const eveningOpen = 930;
+                const eveningClose = 1290;
+
+                const isSaturday = (day === 6);
+                let isOpen = false;
+
+                // Logic: Open if NOT Saturday AND within either Morning OR Evening slot
+                if (!isSaturday) {
+                    if (
+                        (currentTimeInMinutes >= morningOpen && currentTimeInMinutes < morningClose) ||
+                        (currentTimeInMinutes >= eveningOpen && currentTimeInMinutes < eveningClose)
+                    ) {
+                        isOpen = true;
+                    }
+                }
+
+                // Elements
+                const badge = document.getElementById('store-status-badge');
+                const dot = document.getElementById('store-status-dot');
+                const text = document.getElementById('store-status-text');
+
+                // Green Styles
+                const greenBadge = "bg-green-500/10 border-green-500/20 text-green-400";
+                const greenDot = "bg-green-500";
+                
+                // Red Styles
+                const redBadge = "bg-red-500/10 border-red-500/20 text-red-400";
+                const redDot = "bg-red-500";
+
+                // Reset Classes
+                badge.className = "border text-xs font-bold px-3 py-1 rounded-md shadow-sm uppercase tracking-wide flex items-center gap-1.5 transition-colors duration-300";
+                dot.className = "w-1.5 h-1.5 rounded-full animate-pulse transition-colors duration-300";
+
+                if (isOpen) {
+                    // Apply Green
+                    badge.classList.add(...greenBadge.split(" "));
+                    dot.classList.add(...greenDot.split(" "));
+                    text.textContent = "Open Now";
+                } else {
+                    // Apply Red
+                    badge.classList.add(...redBadge.split(" "));
+                    dot.classList.add(...redDot.split(" "));
+                    text.textContent = isSaturday ? "Sat Closed" : "Closed Now";
+                }
+            }
+
+            // Run on load and every minute
+            updateStoreStatus();
+            setInterval(updateStoreStatus, 60000);
+        })();
+    </script>
 </section>
 
     </main>
@@ -1018,55 +1090,72 @@
         const day = now.getDay(); // 0=Sun, 6=Sat
         const hour = now.getHours();
         const minutes = now.getMinutes();
-        const currentTime = hour + minutes / 60;
 
-        // Configuration: Shift Times (24h format decimal)
-        // Morning: 9:30 AM (9.5) to 1:30 PM (13.5)
-        // Evening: 3:30 PM (15.5) to 9:30 PM (21.5)
-        const morningOpen = 9.5;   
-        const morningClose = 13.5; 
-        const eveningOpen = 15.5;  
-        const eveningClose = 21.5; 
-        
+        // Convert current time to total minutes (e.g., 9:30 AM = 570)
+        const currentMinutes = hour * 60 + minutes;
+
+        // Shift Configuration (in minutes)
+        // Morning: 9:30 AM (570) - 1:30 PM (810)
+        // Evening: 3:30 PM (930) - 9:30 PM (1290)
+        const morningOpen = 570;
+        const morningClose = 810;
+        const eveningOpen = 930;
+        const eveningClose = 1290;
+
         const isSaturday = (day === 6);
+        let isOpen = false;
 
-        // Logic: Open if NOT Saturday AND (Inside Morning Shift OR Inside Evening Shift)
-        const isOpen = !isSaturday && (
-            (currentTime >= morningOpen && currentTime < morningClose) || 
-            (currentTime >= eveningOpen && currentTime < eveningClose)
-        );
+        // 1. Determine Open/Closed State
+        if (!isSaturday) {
+            if (
+                (currentMinutes >= morningOpen && currentMinutes < morningClose) ||
+                (currentMinutes >= eveningOpen && currentMinutes < eveningClose)
+            ) {
+                isOpen = true;
+            }
+        }
 
-        // HTML Templates
-        const htmlOpen = '<span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span><span class="text-green-600 font-bold uppercase text-xs">Open Now</span></span>';
-        const htmlClosed = '<span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-red-500"></span><span class="text-red-500 font-bold uppercase text-xs">Closed Now</span></span>';
-        const htmlSat = '<span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-red-500"></span><span class="text-red-500 font-bold uppercase text-xs">Closed (Sat)</span></span>';
-
-        let resultHtml = isOpen ? htmlOpen : (isSaturday ? htmlSat : htmlClosed);
-
-        // Update Header Badge
+        // 2. Update Header Badge (Existing functionality)
         const headerBadge = document.getElementById('status-badge');
-        if (headerBadge) headerBadge.innerHTML = resultHtml;
+        if (headerBadge) {
+            const htmlOpen = '<span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span><span class="text-green-600 font-bold uppercase text-xs">Open Now</span></span>';
+            const htmlClosed = '<span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-red-500"></span><span class="text-red-500 font-bold uppercase text-xs">Closed Now</span></span>';
+            const htmlSat = '<span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-red-500"></span><span class="text-red-500 font-bold uppercase text-xs">Closed (Sat)</span></span>';
+            
+            headerBadge.innerHTML = isOpen ? htmlOpen : (isSaturday ? htmlSat : htmlClosed);
+        }
 
-        // Update Location Card Badge
-        const cardBadge = document.getElementById('card-status-badge');
-        if (cardBadge) {
-            if (isSaturday) {
-                cardBadge.className = "bg-red-100 text-red-600 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide";
-                cardBadge.innerText = "Closed Today";
-            } else if (isOpen) {
-                cardBadge.className = "bg-white text-green-600 text-xs font-bold px-3 py-1 rounded-full shadow-sm uppercase tracking-wide animate-pulse";
-                cardBadge.innerText = "Open Now";
+        // 3. Update Location Card Badge (New Live Green/Red Logic)
+        const locBadge = document.getElementById('store-status-badge');
+        const locDot = document.getElementById('store-status-dot');
+        const locText = document.getElementById('store-status-text');
+
+        if (locBadge && locDot && locText) {
+            // Style constants
+            const greenBadge = ["bg-green-500/10", "border-green-500/20", "text-green-400"];
+            const redBadge = ["bg-red-500/10", "border-red-500/20", "text-red-400"];
+            const greenDot = "bg-green-500";
+            const redDot = "bg-red-500";
+
+            // Reset classes
+            locBadge.classList.remove(...greenBadge, ...redBadge);
+            locDot.classList.remove(greenDot, redDot);
+
+            if (isOpen) {
+                locBadge.classList.add(...greenBadge);
+                locDot.classList.add(greenDot);
+                locText.textContent = "Open Now";
             } else {
-                cardBadge.className = "bg-gray-200 text-gray-600 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide";
-                cardBadge.innerText = "Closed Now";
+                locBadge.classList.add(...redBadge);
+                locDot.classList.add(redDot);
+                locText.textContent = isSaturday ? "Sat Closed" : "Closed Now";
             }
         }
     }
 
-    // Run immediately
+    // Run immediately and then every minute
     updateStoreStatus();
-    // Update every minute
-    setInterval(updateStoreStatus, 60000); 
+    setInterval(updateStoreStatus, 60000);
 
     // 6. Smooth Scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1085,6 +1174,7 @@
 </script>
 </body>
 </html>
+
 
 
 
