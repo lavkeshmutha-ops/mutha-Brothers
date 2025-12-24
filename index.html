@@ -741,36 +741,7 @@
 
 
 
-<script>
-    function openLightbox(imageSrc, captionText) {
-        const lightbox = document.getElementById('lightbox');
-        const img = document.getElementById('lightbox-img');
-        const caption = document.getElementById('lightbox-caption');
-        
-        // Prevent body scroll
-        document.body.style.overflow = 'hidden';
-        
-        img.src = imageSrc;
-        caption.innerText = captionText;
-        lightbox.classList.remove('hidden');
-    }
 
-    function closeLightbox() {
-        const lightbox = document.getElementById('lightbox');
-        
-        // Restore body scroll
-        document.body.style.overflow = 'auto';
-        
-        lightbox.classList.add('hidden');
-    }
-
-    // Close on Escape Key
-    document.addEventListener('keydown', function(event) {
-        if (event.key === "Escape") {
-            closeLightbox();
-        }
-    });
-</script>
  <section id="location" class="py-24 bg-white relative">
     <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         
@@ -863,77 +834,7 @@
         </div>
 
     </div>
-
-    <script>
-        (function() {
-            function updateStoreStatus() {
-                const now = new Date();
-                const day = now.getDay(); // 0=Sun, 6=Sat
-                const hours = now.getHours();
-                const minutes = now.getMinutes();
-                
-                // Convert current time to total minutes for easier comparison
-                const currentTimeInMinutes = hours * 60 + minutes;
-
-                // Time slots in minutes
-                // 9:30 AM = 570 mins
-                // 1:30 PM = 13:30 = 810 mins
-                // 3:30 PM = 15:30 = 930 mins
-                // 9:30 PM = 21:30 = 1290 mins
-                
-                const morningOpen = 570;
-                const morningClose = 810;
-                const eveningOpen = 930;
-                const eveningClose = 1290;
-
-                const isSaturday = (day === 6);
-                let isOpen = false;
-
-                // Logic: Open if NOT Saturday AND within either Morning OR Evening slot
-                if (!isSaturday) {
-                    if (
-                        (currentTimeInMinutes >= morningOpen && currentTimeInMinutes < morningClose) ||
-                        (currentTimeInMinutes >= eveningOpen && currentTimeInMinutes < eveningClose)
-                    ) {
-                        isOpen = true;
-                    }
-                }
-
-                // Elements
-                const badge = document.getElementById('store-status-badge');
-                const dot = document.getElementById('store-status-dot');
-                const text = document.getElementById('store-status-text');
-
-                // Green Styles
-                const greenBadge = "bg-green-500/10 border-green-500/20 text-green-400";
-                const greenDot = "bg-green-500";
-                
-                // Red Styles
-                const redBadge = "bg-red-500/10 border-red-500/20 text-red-400";
-                const redDot = "bg-red-500";
-
-                // Reset Classes
-                badge.className = "border text-xs font-bold px-3 py-1 rounded-md shadow-sm uppercase tracking-wide flex items-center gap-1.5 transition-colors duration-300";
-                dot.className = "w-1.5 h-1.5 rounded-full animate-pulse transition-colors duration-300";
-
-                if (isOpen) {
-                    // Apply Green
-                    badge.classList.add(...greenBadge.split(" "));
-                    dot.classList.add(...greenDot.split(" "));
-                    text.textContent = "Open Now";
-                } else {
-                    // Apply Red
-                    badge.classList.add(...redBadge.split(" "));
-                    dot.classList.add(...redDot.split(" "));
-                    text.textContent = isSaturday ? "Sat Closed" : "Closed Now";
-                }
-            }
-
-            // Run on load and every minute
-            updateStoreStatus();
-            setInterval(updateStoreStatus, 60000);
-        })();
-    </script>
+     
 </section>
 
     </main>
@@ -1022,22 +923,39 @@
             </div>
         </div>
     </footer>
-
-    <script>
-    // 1. Initialize Animation Library
+<div id="lightbox" class="fixed inset-0 z-[100] hidden bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 transition-opacity duration-300">
+    <div class="relative max-w-4xl w-full">
+        <button onclick="closeLightbox()" class="absolute -top-12 right-0 text-white text-3xl hover:text-red-500 transition-colors focus:outline-none">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        
+        <img id="lightbox-img" src="" alt="Zoomed Product" class="w-full h-auto max-h-[80vh] object-contain rounded-lg shadow-2xl border-2 border-white/20">
+        
+        <p id="lightbox-caption" class="text-center text-white mt-4 text-lg font-medium tracking-wide"></p>
+    </div>
+</div>
+    
+  <script>
+    /* =========================================
+       1. INITIALIZATION & ANIMATIONS
+       ========================================= */
+    
+    // Initialize AOS (Animate On Scroll)
     AOS.init({
         duration: 800,
         once: true,
         offset: 100
     });
 
-    // 2. Dynamic Copyright Year
+    // Dynamic Copyright Year
     const yearSpan = document.getElementById('copyright-year');
     if(yearSpan) {
         yearSpan.innerText = new Date().getFullYear();
     }
 
-    // 3. Mobile Menu Logic
+    /* =========================================
+       2. MOBILE MENU LOGIC
+       ========================================= */
     const mobileBtn = document.getElementById('mobile-btn');
     const mobileMenu = document.getElementById('mobile-menu');
     const menuIcon = document.getElementById('menu-icon');
@@ -1052,6 +970,7 @@
             }
         });
 
+        // Close menu when a link is clicked
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
@@ -1063,38 +982,63 @@
         });
     }
 
-    // 4. Lightbox Logic (Image Zoom)
-    const lightboxOverlay = document.getElementById('lightbox');
+    /* =========================================
+       3. LIGHTBOX (IMAGE ZOOM) LOGIC
+       ========================================= */
+    const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const lightboxCaption = document.getElementById('lightbox-caption');
 
-    window.openLightbox = function(src, caption) {
-        if(lightboxOverlay && lightboxImg) {
+    window.openLightbox = function(src, captionText) {
+        if(lightbox && lightboxImg) {
             lightboxImg.src = src;
-            if(lightboxCaption) lightboxCaption.innerText = caption || '';
-            lightboxOverlay.classList.remove('hidden');
-            document.body.style.overflow = 'hidden'; 
+            if(lightboxCaption) lightboxCaption.innerText = captionText || '';
+            
+            lightbox.classList.remove('hidden');
+            lightbox.classList.add('flex'); // Ensure flex display
+            document.body.style.overflow = 'hidden'; // Stop background scrolling
+        } else {
+            console.error("Lightbox elements not found in DOM");
         }
     };
 
     window.closeLightbox = function() {
-        if(lightboxOverlay) {
-            lightboxOverlay.classList.add('hidden');
-            document.body.style.overflow = 'auto'; 
+        if(lightbox) {
+            lightbox.classList.add('hidden');
+            lightbox.classList.remove('flex');
+            document.body.style.overflow = 'auto'; // Restore scrolling
         }
     };
 
-    // 5. STORE STATUS LOGIC (Morning & Evening Shifts)
+    // Close on Escape Key
+    document.addEventListener('keydown', function(event) {
+        if (event.key === "Escape") {
+            window.closeLightbox();
+        }
+    });
+
+    // Close on clicking outside the image
+    if(lightbox) {
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) {
+                window.closeLightbox();
+            }
+        });
+    }
+
+    /* =========================================
+       4. STORE STATUS LOGIC (OPEN/CLOSED)
+       ========================================= */
     function updateStoreStatus() {
         const now = new Date();
         const day = now.getDay(); // 0=Sun, 6=Sat
         const hour = now.getHours();
         const minutes = now.getMinutes();
 
-        // Convert current time to total minutes (e.g., 9:30 AM = 570)
+        // Convert current time to total minutes for easy comparison
         const currentMinutes = hour * 60 + minutes;
 
-        // Shift Configuration (in minutes)
+        // Configuration (Minutes from midnight)
         // Morning: 9:30 AM (570) - 1:30 PM (810)
         // Evening: 3:30 PM (930) - 9:30 PM (1290)
         const morningOpen = 570;
@@ -1105,7 +1049,7 @@
         const isSaturday = (day === 6);
         let isOpen = false;
 
-        // 1. Determine Open/Closed State
+        // Logic Check
         if (!isSaturday) {
             if (
                 (currentMinutes >= morningOpen && currentMinutes < morningClose) ||
@@ -1115,39 +1059,29 @@
             }
         }
 
-        // 2. Update Header Badge (Existing functionality)
-        const headerBadge = document.getElementById('status-badge');
-        if (headerBadge) {
-            const htmlOpen = '<span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span><span class="text-green-600 font-bold uppercase text-xs">Open Now</span></span>';
-            const htmlClosed = '<span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-red-500"></span><span class="text-red-500 font-bold uppercase text-xs">Closed Now</span></span>';
-            const htmlSat = '<span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-red-500"></span><span class="text-red-500 font-bold uppercase text-xs">Closed (Sat)</span></span>';
-            
-            headerBadge.innerHTML = isOpen ? htmlOpen : (isSaturday ? htmlSat : htmlClosed);
-        }
-
-        // 3. Update Location Card Badge (New Live Green/Red Logic)
+        // --- Update UI Elements ---
+        
+        // 1. Update Location Section Badge
         const locBadge = document.getElementById('store-status-badge');
         const locDot = document.getElementById('store-status-dot');
         const locText = document.getElementById('store-status-text');
 
         if (locBadge && locDot && locText) {
-            // Style constants
-            const greenBadge = ["bg-green-500/10", "border-green-500/20", "text-green-400"];
-            const redBadge = ["bg-red-500/10", "border-red-500/20", "text-red-400"];
-            const greenDot = "bg-green-500";
-            const redDot = "bg-red-500";
-
-            // Reset classes
-            locBadge.classList.remove(...greenBadge, ...redBadge);
-            locDot.classList.remove(greenDot, redDot);
+            // Define Styles
+            const greenBadgeClasses = ["bg-green-500/10", "border-green-500/20", "text-green-400"];
+            const redBadgeClasses = ["bg-red-500/10", "border-red-500/20", "text-red-400"];
+            
+            // Clean previous state
+            locBadge.classList.remove(...greenBadgeClasses, ...redBadgeClasses);
+            locDot.classList.remove("bg-green-500", "bg-red-500");
 
             if (isOpen) {
-                locBadge.classList.add(...greenBadge);
-                locDot.classList.add(greenDot);
+                locBadge.classList.add(...greenBadgeClasses);
+                locDot.classList.add("bg-green-500");
                 locText.textContent = "Open Now";
             } else {
-                locBadge.classList.add(...redBadge);
-                locDot.classList.add(redDot);
+                locBadge.classList.add(...redBadgeClasses);
+                locDot.classList.add("bg-red-500");
                 locText.textContent = isSaturday ? "Sat Closed" : "Closed Now";
             }
         }
@@ -1157,15 +1091,19 @@
     updateStoreStatus();
     setInterval(updateStoreStatus, 60000);
 
-    // 6. Smooth Scrolling
+    /* =========================================
+       5. SMOOTH SCROLLING
+       ========================================= */
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
+            if(targetId === '#') return;
+            
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
                 window.scrollTo({
-                    top: targetElement.offsetTop - 80, 
+                    top: targetElement.offsetTop - 80, // Offset for sticky header
                     behavior: 'smooth'
                 });
             }
@@ -1174,6 +1112,7 @@
 </script>
 </body>
 </html>
+
 
 
 
