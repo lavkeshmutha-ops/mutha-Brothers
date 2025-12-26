@@ -1026,8 +1026,97 @@
         });
     });
 </script>
+    <div id="offerPopup" class="fixed inset-0 z-[100] hidden items-center justify-center px-4">
+    
+    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onclick="closePopup()"></div>
+
+    <div class="relative bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden transform scale-95 opacity-0 transition-all duration-300" id="popupCard">
+        
+        <div class="bg-gradient-to-r from-orange-500 to-red-600 p-6 text-center relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-full opacity-20">
+                <i class="fa-solid fa-cloud absolute top-2 left-4 text-white text-xl"></i>
+                <i class="fa-solid fa-cloud absolute bottom-2 right-8 text-white text-xl"></i>
+            </div>
+            
+            <h3 class="text-white font-bold text-2xl uppercase tracking-wider relative z-10">
+                🪁 Makar Sankranti Special
+            </h3>
+            <p class="text-orange-100 text-sm mt-1 relative z-10">Celebrate with Sweet Savings!</p>
+
+            <button onclick="closePopup()" class="absolute top-3 right-3 text-white/80 hover:text-white hover:rotate-90 transition-transform">
+                <i class="fa-solid fa-xmark text-2xl"></i>
+            </button>
+        </div>
+
+        <div class="p-8 text-center">
+            <div class="space-y-4">
+                
+                <div class="bg-orange-50 p-4 rounded-xl border border-orange-100">
+                    <h4 class="font-bold text-gray-800 text-lg mb-1">Premium Gaoran Jaggery & Polish Til</h4>
+                    <p class="text-green-600 font-bold text-xl">Wholesale Rates Available!</p>
+                </div>
+
+                <p class="text-gray-600 text-sm">
+                    Stock up for your home or shop now. Fresh stock of premium quality ingredients just arrived.
+                </p>
+
+                <a href="tel:+919607020711" class="block w-full bg-red-600 text-white font-bold py-3 rounded-lg shadow-lg hover:bg-red-700 hover:shadow-red-500/30 transition-all transform hover:-translate-y-1">
+                    <i class="fa-solid fa-phone mr-2"></i> Call to Book Stock
+                </a>
+                
+                <p class="text-xs text-gray-400 mt-2">*Offer valid till stocks last</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Check if user has already seen the popup today
+        const hasSeenPopup = localStorage.getItem("sankrantiPopupSeen");
+        
+        // If not seen, show it after 2 seconds
+        if (!hasSeenPopup) {
+            setTimeout(openPopup, 2000);
+        }
+    });
+
+    function openPopup() {
+        const popup = document.getElementById('offerPopup');
+        const card = document.getElementById('popupCard');
+        
+        // Remove 'hidden' and set to flex to make it visible
+        popup.classList.remove('hidden');
+        popup.classList.add('flex');
+
+        // Small delay to allow the browser to render "flex" before animating opacity
+        setTimeout(() => {
+            card.classList.remove('scale-95', 'opacity-0');
+            card.classList.add('scale-100', 'opacity-100');
+        }, 10);
+    }
+
+    function closePopup() {
+        const popup = document.getElementById('offerPopup');
+        const card = document.getElementById('popupCard');
+
+        // Animate out
+        card.classList.remove('scale-100', 'opacity-100');
+        card.classList.add('scale-95', 'opacity-0');
+
+        // Hide element after animation finishes (300ms)
+        setTimeout(() => {
+            popup.classList.remove('flex');
+            popup.classList.add('hidden');
+        }, 300);
+
+        // Save to LocalStorage so it doesn't show again for this user
+        localStorage.setItem("sankrantiPopupSeen", "true");
+    }
+</script>
 </body>
 </html>
+
 
 
 
