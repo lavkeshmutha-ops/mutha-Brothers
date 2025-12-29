@@ -548,12 +548,11 @@
   </div>
 </section>
 
-       <section
+      <section
   id="services"
   class="relative overflow-hidden bg-gray-50 py-24"
   aria-labelledby="services-heading"
 >
-  <!-- Background pattern -->
   <div
     class="absolute inset-0 opacity-[0.05]"
     style="background-image: radial-gradient(#ef4444 1px, transparent 1px); background-size: 24px 24px;"
@@ -578,12 +577,11 @@
       </p>
     </div>
 
-    <!-- Services Grid -->
-    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+    <!-- Cards -->
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
 
-      <!-- Card -->
       <div class="service-card" data-aos="fade-up">
-        <div class="icon bg-red-500">
+        <div class="service-icon bg-red-500">
           <i class="fa-solid fa-truck-fast"></i>
         </div>
         <h3>Wholesale Services</h3>
@@ -594,7 +592,7 @@
       </div>
 
       <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-        <div class="icon bg-green-500">
+        <div class="service-icon bg-green-500">
           <i class="fa-solid fa-basket-shopping"></i>
         </div>
         <h3>Retail Shopping</h3>
@@ -605,7 +603,7 @@
       </div>
 
       <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-        <div class="icon bg-blue-500">
+        <div class="service-icon bg-blue-500">
           <i class="fa-solid fa-shield-halved"></i>
         </div>
         <h3>Quality Assurance</h3>
@@ -615,7 +613,7 @@
       </div>
 
       <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-        <div class="icon bg-orange-500">
+        <div class="service-icon bg-orange-500">
           <i class="fa-solid fa-box-open"></i>
         </div>
         <h3>Home Delivery</h3>
@@ -625,7 +623,7 @@
       </div>
 
       <div class="service-card" data-aos="fade-up" data-aos-delay="400">
-        <div class="icon bg-purple-500">
+        <div class="service-icon bg-purple-500">
           <i class="fa-solid fa-clipboard-list"></i>
         </div>
         <h3>Custom Orders</h3>
@@ -635,7 +633,7 @@
       </div>
 
       <div class="service-card" data-aos="fade-up" data-aos-delay="500">
-        <div class="icon bg-teal-500">
+        <div class="service-icon bg-teal-500">
           <i class="fa-solid fa-handshake"></i>
         </div>
         <h3>Expert Consultation</h3>
@@ -651,52 +649,107 @@
       <p class="mb-4 text-gray-500">Need something specific?</p>
       <a
         href="#location"
-        class="inline-block border-b-2 border-brand-red pb-1 font-bold text-brand-dark transition-colors hover:text-brand-red"
+        class="inline-flex items-center gap-2 border-b-2 border-brand-red pb-1 font-bold text-brand-dark transition-colors hover:text-brand-red"
       >
         Contact us for a quote
-        <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
+        <i class="fa-solid fa-arrow-right text-sm"></i>
       </a>
     </div>
   </div>
 </section>
 
 
-<style>
-       
+
+<style type="text/tailwindcss">
   @layer components {
-  .product-card {
-    @apply group cursor-pointer overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl;
-  }
 
-  .product-img-wrap {
-    @apply relative h-64 overflow-hidden;
-  }
+    /* =========================
+       PRODUCT CARDS
+       ========================= */
+    .product-card {
+      @apply group cursor-pointer overflow-hidden rounded-2xl
+             border border-gray-100 bg-white shadow-md
+             transition-all duration-300
+             hover:-translate-y-1 hover:shadow-2xl;
+    }
 
-  .product-img {
-    @apply h-full w-full object-cover transition-transform duration-700 group-hover:scale-110;
-  }
+    .product-img-wrap {
+      @apply relative h-64 overflow-hidden;
+    }
 
-  .product-overlay {
-    @apply absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100;
-  }
+    .product-img {
+      @apply h-full w-full object-cover
+             transition-transform duration-700
+             group-hover:scale-110;
+    }
 
-  .product-overlay span {
-    @apply flex items-center gap-2 rounded-full border border-white/50 bg-white/20 px-4 py-2 text-white backdrop-blur-sm;
-  }
+    .product-overlay {
+      @apply absolute inset-0 flex items-center justify-center
+             bg-black/40 opacity-0
+             transition-opacity duration-300
+             group-hover:opacity-100;
+    }
 
-  .product-badge {
-    @apply absolute left-3 top-3 rounded px-2 py-1 text-[10px] font-bold uppercase tracking-widest text-white;
-  }
+    .product-overlay span {
+      @apply flex items-center gap-2 rounded-full
+             border border-white/50 bg-white/20
+             px-4 py-2 text-white backdrop-blur-sm;
+    }
 
-  .product-title {
-    @apply text-lg font-bold text-gray-900 transition-colors group-hover:text-brand-red;
-  }
+    .product-badge {
+      @apply absolute left-3 top-3 rounded
+             px-2 py-1 text-[10px]
+             font-bold uppercase tracking-widest text-white;
+    }
 
-  .product-sub {
-    @apply mt-1 text-xs font-semibold uppercase tracking-wide text-gray-500;
+    .product-title {
+      @apply text-lg font-bold text-gray-900
+             transition-colors
+             group-hover:text-brand-red;
+    }
+
+    .product-sub {
+      @apply mt-1 text-xs font-semibold
+             uppercase tracking-wide text-gray-500;
+    }
+
+    /* =========================
+       SERVICE CARDS
+       ========================= */
+    .service-card {
+      @apply relative flex flex-col gap-4
+             rounded-2xl border border-gray-100
+             bg-white p-8 shadow-md
+             transition-all duration-300
+             hover:-translate-y-1 hover:shadow-2xl;
+    }
+
+    .service-icon {
+      @apply flex h-14 w-14 items-center justify-center
+             rounded-xl text-2xl text-white shadow-lg;
+    }
+
+    .service-card h3 {
+      @apply mt-2 text-xl font-black text-gray-900;
+    }
+
+    .service-card p {
+      @apply text-sm leading-relaxed text-gray-600;
+    }
+
+    .service-card::after {
+      content: "";
+      @apply absolute inset-x-0 bottom-0 h-1
+             bg-brand-red opacity-0
+             transition-opacity duration-300;
+    }
+
+    .service-card:hover::after {
+      @apply opacity-100;
+    }
   }
-}
-    </style>
+</style>
+
 <section
   id="products"
   class="relative bg-white py-24"
@@ -1388,6 +1441,7 @@ document.addEventListener("DOMContentLoaded", renderGoogleRating);
 
 </body>
 </html>
+
 
 
 
