@@ -334,31 +334,38 @@
       </div>
 
       <!-- Rating badge -->
-      <div
-        class="absolute -bottom-6 -left-6 hidden md:block rounded-2xl border border-white/50 bg-white/95 p-5 backdrop-blur-xl shadow-xl animate-bounce-slow"
-      >
-        <div class="flex items-center gap-4">
-          <div class="rounded-full border border-green-100 bg-green-50 p-3 text-green-600">
-            <i class="fa-brands fa-google text-2xl"></i>
-          </div>
-          <div>
-            <p class="text-3xl font-black leading-none text-gray-800">4.2</p>
-            <div class="mt-1 flex gap-0.5 text-xs text-yellow-400">
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star-half-stroke"></i>
-            </div>
-            <p class="mt-1 text-[10px] font-bold uppercase tracking-wider text-gray-400">
-              Trusted Reviews
-            </p>
-          </div>
-        </div>
-      </div>
+<div
+  class="absolute -bottom-6 -left-6 hidden md:block rounded-2xl border border-white/50 bg-white/95 p-5 backdrop-blur-xl shadow-xl animate-bounce-slow"
+>
+  <div class="flex items-center gap-4">
+    <div class="rounded-full border border-green-100 bg-green-50 p-3 text-green-600">
+      <i class="fa-brands fa-google text-2xl"></i>
     </div>
 
+    <div>
+      <p
+        id="google-rating"
+        class="text-3xl font-black leading-none text-gray-800"
+      >
+        --
+      </p>
+
+      <div
+        id="google-stars"
+        class="mt-1 flex gap-0.5 text-xs text-yellow-400"
+        aria-label="Google rating"
+      ></div>
+
+      <p
+        id="google-review-count"
+        class="mt-1 text-[10px] font-bold uppercase tracking-wider text-gray-400"
+      >
+        Loading reviews…
+      </p>
+    </div>
   </div>
+</div>
+
 </section>
 
 
@@ -1327,10 +1334,60 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 });
+     
+/* =========================================
+   GOOGLE RATING (DYNAMIC DISPLAY)
+   ========================================= */
+
+// Update this object whenever rating changes
+const GOOGLE_REVIEW_DATA = {
+  rating: 4.2,
+  totalReviews: 180,
+  sourceUrl:
+    "https://www.google.com/search?q=Mutha+Brothers+Food+Reviews"
+};
+
+function renderGoogleRating() {
+  const ratingEl = document.getElementById("google-rating");
+  const starsEl = document.getElementById("google-stars");
+  const countEl = document.getElementById("google-review-count");
+
+  if (!ratingEl || !starsEl || !countEl) return;
+
+  const rating = GOOGLE_REVIEW_DATA.rating;
+  const fullStars = Math.floor(rating);
+  const hasHalfStar = rating % 1 >= 0.5;
+
+  ratingEl.textContent = rating.toFixed(1);
+  starsEl.innerHTML = "";
+
+  for (let i = 0; i < fullStars; i++) {
+    starsEl.innerHTML += `<i class="fa-solid fa-star"></i>`;
+  }
+
+  if (hasHalfStar) {
+    starsEl.innerHTML += `<i class="fa-solid fa-star-half-stroke"></i>`;
+  }
+
+  countEl.innerHTML = `
+    <a
+      href="${GOOGLE_REVIEW_DATA.sourceUrl}"
+      target="_blank"
+      class="hover:text-brand-red transition-colors"
+    >
+      ${GOOGLE_REVIEW_DATA.totalReviews}+ Google Reviews
+    </a>
+  `;
+}
+
+document.addEventListener("DOMContentLoaded", renderGoogleRating);
 </script>
+
+
 
 </body>
 </html>
+
 
 
 
