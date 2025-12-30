@@ -986,12 +986,20 @@
           </div>
         </div>
 
-        <!-- Opening Hours -->
-<div class="relative z-10 mb-6 flex flex-wrap items-center gap-4">
-  <div class="flex items-center gap-3">
-    <div class="rounded-lg bg-white/20 p-2 backdrop-blur-sm">
+       <!-- Opening Hours -->
+<div
+  class="relative mt-8 rounded-2xl
+         border border-red-700
+         bg-gradient-to-br from-red-600 via-red-700 to-red-800
+         p-6 text-white shadow-xl"
+>
+
+  <!-- Header row -->
+  <div class="mb-6 flex items-center gap-4">
+    <div class="rounded-lg bg-white/20 p-2">
       <i class="fa-solid fa-clock text-white"></i>
     </div>
+
     <div>
       <h4 class="text-xs font-bold uppercase tracking-widest text-red-100">
         Opening Hours
@@ -1000,23 +1008,41 @@
         Weekly Schedule
       </p>
     </div>
+
+    <!-- Status badge -->
+    <div
+      id="store-status-badge"
+      class="ml-auto flex items-center gap-1.5 rounded-md
+             border border-green-300/40
+             bg-green-300/20
+             px-3 py-1 text-xs font-bold uppercase
+             tracking-wide text-green-200"
+    >
+      <span
+        id="store-status-dot"
+        class="h-1.5 w-1.5 rounded-full bg-green-300 animate-pulse"
+      ></span>
+      <span id="store-status-text">Open Now</span>
+    </div>
   </div>
 
-  <!-- Store Status Badge -->
-  <div
-    id="store-status-badge"
-    class="ml-auto flex items-center gap-1.5 rounded-md
-           border border-yellow-300/40
-           bg-yellow-300/20
-           px-3 py-1 text-xs font-bold uppercase
-           tracking-wide text-yellow-200"
-  >
-    <span
-      id="store-status-dot"
-      class="h-1.5 w-1.5 rounded-full bg-yellow-300 animate-pulse"
-    ></span>
-    <span id="store-status-text">Closed Now</span>
+  <!-- Time slots -->
+  <div class="space-y-4">
+    <div class="flex items-center justify-between border-b border-white/20 pb-3">
+      <span class="text-sm font-semibold text-red-100">Morning Slot</span>
+      <span class="font-mono text-lg font-black text-white">
+        9:30 AM – 1:30 PM
+      </span>
+    </div>
+
+    <div class="flex items-center justify-between">
+      <span class="text-sm font-semibold text-red-100">Evening Slot</span>
+      <span class="font-mono text-lg font-black text-white">
+        3:30 PM – 9:30 PM
+      </span>
+    </div>
   </div>
+
 </div>
 
 
@@ -1397,6 +1423,7 @@ document.addEventListener("DOMContentLoaded", renderGoogleRating);
 
 </body>
 </html>
+
 
 
 
