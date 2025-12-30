@@ -548,11 +548,12 @@
   </div>
 </section>
 
-      <section
+    <section
   id="services"
   class="relative overflow-hidden bg-gray-50 py-24"
   aria-labelledby="services-heading"
 >
+  <!-- Background pattern -->
   <div
     class="absolute inset-0 opacity-[0.05]"
     style="background-image: radial-gradient(#ef4444 1px, transparent 1px); background-size: 24px 24px;"
@@ -560,6 +561,7 @@
   ></div>
 
   <div class="relative z-10 mx-auto max-w-7xl px-6">
+
     <!-- Heading -->
     <div class="mb-16 text-center">
       <span class="mb-2 block text-xs font-bold uppercase tracking-widest text-brand-red">
@@ -580,66 +582,112 @@
     <!-- Cards -->
     <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
 
-      <div class="service-card" data-aos="fade-up">
-        <div class="service-icon bg-red-500">
-          <i class="fa-solid fa-truck-fast"></i>
+      <!-- Wholesale -->
+      <div
+        class="group relative overflow-hidden rounded-2xl border border-red-100 bg-white p-8
+               shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
+        data-aos="fade-up"
+      >
+        <div class="absolute inset-0 bg-gradient-to-br from-red-50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+        <div class="relative z-10">
+          <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-red-500 text-2xl text-white shadow-lg">
+            <i class="fa-solid fa-truck-fast"></i>
+          </div>
+          <h3 class="mb-2 text-xl font-black text-gray-900">Wholesale Services</h3>
+          <p class="text-sm leading-relaxed text-gray-600">
+            Bulk purchasing solutions for retailers and businesses with reliable supply and competitive pricing.
+          </p>
         </div>
-        <h3>Wholesale Services</h3>
-        <p>
-          Bulk purchasing for retailers and businesses with reliable supply and
-          competitive pricing.
-        </p>
       </div>
 
-      <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-        <div class="service-icon bg-green-500">
-          <i class="fa-solid fa-basket-shopping"></i>
+      <!-- Retail -->
+      <div
+        class="group relative overflow-hidden rounded-2xl border border-green-100 bg-white p-8
+               shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
+        data-aos="fade-up" data-aos-delay="100"
+      >
+        <div class="absolute inset-0 bg-gradient-to-br from-green-50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+        <div class="relative z-10">
+          <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-green-500 text-2xl text-white shadow-lg">
+            <i class="fa-solid fa-basket-shopping"></i>
+          </div>
+          <h3 class="mb-2 text-xl font-black text-gray-900">Retail Shopping</h3>
+          <p class="text-sm leading-relaxed text-gray-600">
+            Daily essentials for families with fair pricing and friendly service.
+          </p>
         </div>
-        <h3>Retail Shopping</h3>
-        <p>
-          Daily essentials and groceries for families with fair prices and
-          friendly service.
-        </p>
       </div>
 
-      <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-        <div class="service-icon bg-blue-500">
-          <i class="fa-solid fa-shield-halved"></i>
+      <!-- Quality -->
+      <div
+        class="group relative overflow-hidden rounded-2xl border border-blue-100 bg-white p-8
+               shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
+        data-aos="fade-up" data-aos-delay="200"
+      >
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+        <div class="relative z-10">
+          <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-blue-500 text-2xl text-white shadow-lg">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <h3 class="mb-2 text-xl font-black text-gray-900">Quality Assurance</h3>
+          <p class="text-sm leading-relaxed text-gray-600">
+            Every product is quality-checked and sourced from trusted suppliers.
+          </p>
         </div>
-        <h3>Quality Assurance</h3>
-        <p>
-          Every product is checked for quality and sourced from trusted suppliers.
-        </p>
       </div>
 
-      <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-        <div class="service-icon bg-orange-500">
-          <i class="fa-solid fa-box-open"></i>
+      <!-- Delivery -->
+      <div
+        class="group relative overflow-hidden rounded-2xl border border-orange-100 bg-white p-8
+               shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
+        data-aos="fade-up" data-aos-delay="300"
+      >
+        <div class="absolute inset-0 bg-gradient-to-br from-orange-50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+        <div class="relative z-10">
+          <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-orange-500 text-2xl text-white shadow-lg">
+            <i class="fa-solid fa-box-open"></i>
+          </div>
+          <h3 class="mb-2 text-xl font-black text-gray-900">Home Delivery</h3>
+          <p class="text-sm leading-relaxed text-gray-600">
+            Reliable doorstep delivery for bulk and retail orders across the local area.
+          </p>
         </div>
-        <h3>Home Delivery</h3>
-        <p>
-          Doorstep delivery for bulk and retail orders across the local area.
-        </p>
       </div>
 
-      <div class="service-card" data-aos="fade-up" data-aos-delay="400">
-        <div class="service-icon bg-purple-500">
-          <i class="fa-solid fa-clipboard-list"></i>
+      <!-- Custom Orders -->
+      <div
+        class="group relative overflow-hidden rounded-2xl border border-purple-100 bg-white p-8
+               shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
+        data-aos="fade-up" data-aos-delay="400"
+      >
+        <div class="absolute inset-0 bg-gradient-to-br from-purple-50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+        <div class="relative z-10">
+          <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-purple-500 text-2xl text-white shadow-lg">
+            <i class="fa-solid fa-clipboard-list"></i>
+          </div>
+          <h3 class="mb-2 text-xl font-black text-gray-900">Custom Orders</h3>
+          <p class="text-sm leading-relaxed text-gray-600">
+            Special bulk requirements handled with flexibility and care.
+          </p>
         </div>
-        <h3>Custom Orders</h3>
-        <p>
-          Special bulk requirements handled with care and flexibility.
-        </p>
       </div>
 
-      <div class="service-card" data-aos="fade-up" data-aos-delay="500">
-        <div class="service-icon bg-teal-500">
-          <i class="fa-solid fa-handshake"></i>
+      <!-- Consultation -->
+      <div
+        class="group relative overflow-hidden rounded-2xl border border-teal-100 bg-white p-8
+               shadow-md transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl"
+        data-aos="fade-up" data-aos-delay="500"
+      >
+        <div class="absolute inset-0 bg-gradient-to-br from-teal-50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+        <div class="relative z-10">
+          <div class="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-teal-500 text-2xl text-white shadow-lg">
+            <i class="fa-solid fa-handshake"></i>
+          </div>
+          <h3 class="mb-2 text-xl font-black text-gray-900">Expert Consultation</h3>
+          <p class="text-sm leading-relaxed text-gray-600">
+            Decades of experience helping customers choose the right products.
+          </p>
         </div>
-        <h3>Expert Consultation</h3>
-        <p>
-          Decades of experience helping customers choose the right products.
-        </p>
       </div>
 
     </div>
@@ -655,9 +703,9 @@
         <i class="fa-solid fa-arrow-right text-sm"></i>
       </a>
     </div>
+
   </div>
 </section>
-
 
 
 <style type="text/tailwindcss">
@@ -752,16 +800,17 @@
 
 <section
   id="products"
-  class="relative bg-white py-24"
+  class="relative overflow-hidden bg-white py-24"
   aria-labelledby="products-heading"
 >
   <!-- Decorative accent -->
   <div
-    class="pointer-events-none absolute -top-20 -right-20 h-96 w-96 rounded-full bg-red-50 blur-3xl opacity-50"
+    class="pointer-events-none absolute -top-24 -right-24 h-96 w-96 rounded-full bg-red-100/60 blur-3xl"
     aria-hidden="true"
   ></div>
 
   <div class="relative z-10 mx-auto max-w-7xl px-6">
+
     <!-- Heading -->
     <div class="mb-16 text-center" data-aos="fade-up">
       <span class="mb-2 block text-xs font-bold uppercase tracking-widest text-brand-red">
@@ -781,130 +830,182 @@
     </div>
 
     <!-- Products Grid -->
-    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
 
+      <!-- PRODUCT CARD TEMPLATE -->
       <!-- Whole Grains -->
-      <div class="product-card" data-img="Grains.jpg" data-caption="Wholesome Whole Grains" data-aos="fade-up">
-        <div class="product-img-wrap">
-          <img src="Grains.jpg" alt="Whole Grains" class="product-img" loading="lazy"
-               onerror="this.src='https://placehold.co/400x300?text=Whole+Grains'">
-          <div class="product-overlay">
-            <span><i class="fa-solid fa-magnifying-glass-plus"></i> View</span>
+      <div
+        class="group relative cursor-pointer overflow-hidden rounded-2xl
+               border border-gray-100 bg-white shadow-md
+               transition-all duration-500
+               hover:-translate-y-2 hover:shadow-2xl"
+        data-img="Grains.jpg"
+        data-caption="Wholesome Whole Grains"
+        data-aos="fade-up"
+      >
+        <div class="relative h-64 overflow-hidden">
+          <img
+            src="Grains.jpg"
+            alt="Whole Grains"
+            class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+            loading="lazy"
+            onerror="this.src='https://placehold.co/400x300?text=Whole+Grains'"
+          />
+
+          <div
+            class="absolute inset-0 flex items-center justify-center
+                   bg-black/40 opacity-0
+                   transition-opacity duration-500
+                   group-hover:opacity-100"
+          >
+            <span
+              class="flex items-center gap-2 rounded-full
+                     border border-white/50 bg-white/20
+                     px-4 py-2 text-white backdrop-blur-sm"
+            >
+              <i class="fa-solid fa-magnifying-glass-plus"></i>
+              View
+            </span>
           </div>
-          <span class="product-badge bg-brand-red">Bulk Available</span>
+
+          <span
+            class="absolute left-3 top-3 rounded-full bg-brand-red
+                   px-3 py-1 text-[10px] font-black uppercase tracking-widest text-white shadow"
+          >
+            Bulk
+          </span>
         </div>
+
         <div class="p-6 text-center">
-          <h3 class="product-title">Whole Grains</h3>
-          <p class="product-sub">Wheat • Rice • Jowar</p>
+          <h3 class="text-lg font-black text-gray-900 transition-colors group-hover:text-brand-red">
+            Whole Grains
+          </h3>
+          <p class="mt-1 text-xs font-semibold uppercase tracking-wide text-gray-500">
+            Wheat • Rice • Jowar
+          </p>
         </div>
       </div>
 
       <!-- Dals & Pulses -->
-      <div class="product-card" data-img="Dals.jpeg" data-caption="Premium Dals & Pulses" data-aos="fade-up" data-aos-delay="100">
-        <div class="product-img-wrap">
-          <img src="Dals.jpeg" alt="Dals and Pulses" class="product-img" loading="lazy"
-               onerror="this.src='https://placehold.co/400x300?text=Dals+and+Pulses'">
-          <div class="product-overlay">
-            <span><i class="fa-solid fa-magnifying-glass-plus"></i> View</span>
+      <div
+        class="group relative cursor-pointer overflow-hidden rounded-2xl
+               border border-gray-100 bg-white shadow-md
+               transition-all duration-500
+               hover:-translate-y-2 hover:shadow-2xl"
+        data-img="Dals.jpeg"
+        data-caption="Premium Dals & Pulses"
+        data-aos="fade-up"
+        data-aos-delay="100"
+      >
+        <div class="relative h-64 overflow-hidden">
+          <img
+            src="Dals.jpeg"
+            alt="Dals and Pulses"
+            class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+            loading="lazy"
+            onerror="this.src='https://placehold.co/400x300?text=Dals+and+Pulses'"
+          />
+
+          <div class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+            <span class="flex items-center gap-2 rounded-full border border-white/50 bg-white/20 px-4 py-2 text-white backdrop-blur-sm">
+              <i class="fa-solid fa-magnifying-glass-plus"></i> View
+            </span>
           </div>
-          <span class="product-badge bg-brand-red">Best Seller</span>
+
+          <span class="absolute left-3 top-3 rounded-full bg-orange-500 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-white shadow">
+            Bestseller
+          </span>
         </div>
+
         <div class="p-6 text-center">
-          <h3 class="product-title">Dals & Pulses</h3>
-          <p class="product-sub">Toor • Moong • Chana</p>
+          <h3 class="text-lg font-black text-gray-900 transition-colors group-hover:text-brand-red">
+            Dals & Pulses
+          </h3>
+          <p class="mt-1 text-xs font-semibold uppercase tracking-wide text-gray-500">
+            Toor • Moong • Chana
+          </p>
         </div>
       </div>
 
       <!-- Oil & Ghee -->
-      <div class="product-card" data-img="Oil-Ghee.png" data-caption="Pure Oils & Ghee" data-aos="fade-up" data-aos-delay="200">
-        <div class="product-img-wrap">
-          <img src="Oil-Ghee.png" alt="Oil and Ghee" class="product-img" loading="lazy"
-               onerror="this.src='https://placehold.co/400x300?text=Oil+and+Ghee'">
-          <div class="product-overlay">
-            <span><i class="fa-solid fa-magnifying-glass-plus"></i> View</span>
+      <div
+        class="group relative cursor-pointer overflow-hidden rounded-2xl
+               border border-gray-100 bg-white shadow-md
+               transition-all duration-500
+               hover:-translate-y-2 hover:shadow-2xl"
+        data-img="Oil-Ghee.png"
+        data-caption="Pure Oils & Ghee"
+        data-aos="fade-up"
+        data-aos-delay="200"
+      >
+        <div class="relative h-64 overflow-hidden">
+          <img
+            src="Oil-Ghee.png"
+            alt="Oil and Ghee"
+            class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+            loading="lazy"
+            onerror="this.src='https://placehold.co/400x300?text=Oil+and+Ghee'"
+          />
+
+          <div class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+            <span class="flex items-center gap-2 rounded-full border border-white/50 bg-white/20 px-4 py-2 text-white backdrop-blur-sm">
+              <i class="fa-solid fa-magnifying-glass-plus"></i> View
+            </span>
           </div>
-          <span class="product-badge bg-green-600">Pure</span>
+
+          <span class="absolute left-3 top-3 rounded-full bg-green-600 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-white shadow">
+            Pure
+          </span>
         </div>
+
         <div class="p-6 text-center">
-          <h3 class="product-title">Oil & Ghee</h3>
-          <p class="product-sub">Refined • Filtered • Desi</p>
+          <h3 class="text-lg font-black text-gray-900 transition-colors group-hover:text-brand-red">
+            Oil & Ghee
+          </h3>
+          <p class="mt-1 text-xs font-semibold uppercase tracking-wide text-gray-500">
+            Refined • Filtered • Desi
+          </p>
         </div>
       </div>
 
       <!-- Dry Fruits -->
-      <div class="product-card" data-img="Dryfruits.jpeg" data-caption="Premium Dry Fruits" data-aos="fade-up" data-aos-delay="300">
-        <div class="product-img-wrap">
-          <img src="Dryfruits.jpeg" alt="Dry Fruits" class="product-img" loading="lazy"
-               onerror="this.src='https://placehold.co/400x300?text=Dry+Fruits'">
-          <div class="product-overlay">
-            <span><i class="fa-solid fa-magnifying-glass-plus"></i> View</span>
-          </div>
-          <span class="product-badge bg-brand-red">Premium</span>
-        </div>
-        <div class="p-6 text-center">
-          <h3 class="product-title">Dry Fruits</h3>
-          <p class="product-sub">Almonds • Cashews • Dates</p>
-        </div>
-      </div>
+      <div
+        class="group relative cursor-pointer overflow-hidden rounded-2xl
+               border border-gray-100 bg-white shadow-md
+               transition-all duration-500
+               hover:-translate-y-2 hover:shadow-2xl"
+        data-img="Dryfruits.jpeg"
+        data-caption="Premium Dry Fruits"
+        data-aos="fade-up"
+        data-aos-delay="300"
+      >
+        <div class="relative h-64 overflow-hidden">
+          <img
+            src="Dryfruits.jpeg"
+            alt="Dry Fruits"
+            class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+            loading="lazy"
+            onerror="this.src='https://placehold.co/400x300?text=Dry+Fruits'"
+          />
 
-      <!-- Biscuits -->
-      <div class="product-card" data-img="Biscuits.jpg" data-caption="Biscuits & Cookies" data-aos="fade-up">
-        <div class="product-img-wrap">
-          <img src="Biscuits.jpg" alt="Biscuits" class="product-img" loading="lazy"
-               onerror="this.src='https://placehold.co/400x300?text=Biscuits'">
-          <div class="product-overlay">
-            <span><i class="fa-solid fa-magnifying-glass-plus"></i> View</span>
+          <div class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+            <span class="flex items-center gap-2 rounded-full border border-white/50 bg-white/20 px-4 py-2 text-white backdrop-blur-sm">
+              <i class="fa-solid fa-magnifying-glass-plus"></i> View
+            </span>
           </div>
-        </div>
-        <div class="p-6 text-center">
-          <h3 class="product-title">Biscuits</h3>
-          <p class="product-sub">All Major Brands</p>
-        </div>
-      </div>
 
-      <!-- Daily Needs -->
-      <div class="product-card" data-img="FMCG.jpg" data-caption="Daily FMCG Needs" data-aos="fade-up" data-aos-delay="100">
-        <div class="product-img-wrap">
-          <img src="FMCG.jpg" alt="Daily FMCG Products" class="product-img" loading="lazy"
-               onerror="this.src='https://placehold.co/400x300?text=FMCG+Products'">
-          <div class="product-overlay">
-            <span><i class="fa-solid fa-magnifying-glass-plus"></i> View</span>
-          </div>
+          <span class="absolute left-3 top-3 rounded-full bg-purple-600 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-white shadow">
+            Premium
+          </span>
         </div>
-        <div class="p-6 text-center">
-          <h3 class="product-title">Daily Needs</h3>
-          <p class="product-sub">Packaged Foods • Snacks</p>
-        </div>
-      </div>
 
-      <!-- Cleaning Supplies -->
-      <div class="product-card" data-img="Detergents.webp" data-caption="Cleaning Supplies" data-aos="fade-up" data-aos-delay="200">
-        <div class="product-img-wrap">
-          <img src="Detergents.webp" alt="Cleaning Supplies" class="product-img" loading="lazy"
-               onerror="this.src='https://placehold.co/400x300?text=Cleaning+Supplies'">
-          <div class="product-overlay">
-            <span><i class="fa-solid fa-magnifying-glass-plus"></i> View</span>
-          </div>
-        </div>
         <div class="p-6 text-center">
-          <h3 class="product-title">Cleaning</h3>
-          <p class="product-sub">Soaps • Detergents • Phenyl</p>
-        </div>
-      </div>
-
-      <!-- Jaggery & Sugar -->
-      <div class="product-card" data-img="Gud-shakar.webp" data-caption="Jaggery & Sugar" data-aos="fade-up" data-aos-delay="300">
-        <div class="product-img-wrap">
-          <img src="Gud-shakar.webp" alt="Jaggery and Sugar" class="product-img" loading="lazy"
-               onerror="this.src='https://placehold.co/400x300?text=Sugar+and+Jaggery'">
-          <div class="product-overlay">
-            <span><i class="fa-solid fa-magnifying-glass-plus"></i> View</span>
-          </div>
-          <span class="product-badge bg-brand-red">Seasonal</span>
-        </div>
-        <div class="p-6 text-center">
-          <h3 class="product-title">Jaggery & Sugar</h3>
-          <p class="product-sub">Organic • Refined</p>
+          <h3 class="text-lg font-black text-gray-900 transition-colors group-hover:text-brand-red">
+            Dry Fruits
+          </h3>
+          <p class="mt-1 text-xs font-semibold uppercase tracking-wide text-gray-500">
+            Almonds • Cashews • Dates
+          </p>
         </div>
       </div>
 
@@ -914,142 +1015,154 @@
 
 
 
+
 <section
   id="location"
-  class="relative bg-white py-24"
+  class="relative overflow-hidden bg-gradient-to-b from-white to-gray-50 py-24"
   aria-labelledby="location-heading"
 >
-  <div class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-6 lg:grid-cols-2 lg:gap-20">
+  <!-- soft background accent -->
+  <div
+    class="pointer-events-none absolute -top-32 -left-32 h-96 w-96 rounded-full bg-red-100/40 blur-3xl"
+    aria-hidden="true"
+  ></div>
 
-    <!-- Left: Store Info -->
-    <div data-aos="fade-right">
-      <span class="mb-4 inline-block rounded-full bg-red-50 px-3 py-1 text-xs font-bold uppercase tracking-widest text-brand-red">
-        Find Us
-      </span>
+  <div
+    class="relative mx-auto grid max-w-7xl grid-cols-1 items-start gap-14 px-6 lg:grid-cols-2 lg:gap-20"
+  >
 
-      <h2
-        id="location-heading"
-        class="mb-8 text-4xl md:text-5xl font-black text-gray-900 leading-tight"
-      >
-        Visit The <span class="text-brand-red">Store</span>
-      </h2>
+    <!-- LEFT: Info -->
+    <div data-aos="fade-right" class="space-y-10">
 
-      <div class="space-y-8">
+      <!-- Heading -->
+      <div>
+        <span class="mb-4 inline-block rounded-full bg-red-50 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-brand-red">
+          Find Us
+        </span>
 
-        <!-- Address -->
-        <div class="group flex items-start gap-5">
-          <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-red-50 text-2xl text-brand-red transition-transform duration-300 group-hover:scale-110">
-            <i class="fa-solid fa-map-location-dot"></i>
-          </div>
-          <div>
-            <h3 class="mb-1 text-xs font-bold uppercase tracking-widest text-gray-400">
-              Address
-            </h3>
-            <p class="text-lg font-bold leading-snug text-gray-800">
-              Mutha Brothers Food<br>
-              Mutha Niwas, Mohan Nagar, MIDC,<br>
-              Chinchwad, Pune – 411019
-            </p>
-            <a
-              href="https://maps.google.com/?cid=17712901662806254982"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="mt-3 inline-flex items-center gap-2 text-sm font-bold text-brand-red transition-colors hover:text-red-800"
-            >
-              <i class="fa-solid fa-diamond-turn-right"></i>
-              Get Directions
-            </a>
-          </div>
-        </div>
+        <h2
+          id="location-heading"
+          class="mt-4 text-4xl md:text-5xl font-black leading-tight text-gray-900"
+        >
+          Visit The <span class="text-brand-red">Store</span>
+        </h2>
 
-        <!-- Contact -->
-        <div class="group flex items-start gap-5">
-          <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-red-50 text-2xl text-brand-red transition-transform duration-300 group-hover:scale-110">
-            <i class="fa-solid fa-phone-volume"></i>
-          </div>
-          <div>
-            <h3 class="mb-1 text-xs font-bold uppercase tracking-widest text-gray-400">
-              Contact
-            </h3>
-            <p class="font-mono text-lg font-bold tracking-tight text-gray-800">
-              +91 96070 20711
-            </p>
-            <a
-              href="https://wa.me/919607020711"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="mt-2 inline-flex items-center gap-2 rounded-lg border border-green-100 bg-green-50 px-3 py-1 text-sm font-bold text-green-600 transition-all hover:text-green-700 hover:underline"
-            >
-              <i class="fa-brands fa-whatsapp text-lg"></i>
-              Chat on WhatsApp
-            </a>
+        <p class="mt-4 max-w-md text-lg text-gray-600">
+          Drop by our store for wholesale and retail grocery needs. We’re always happy to help.
+        </p>
+      </div>
+
+      <!-- Info Cards -->
+      <div class="space-y-6">
+
+        <!-- Address Card -->
+        <div class="rounded-2xl border border-gray-100 bg-white p-6 shadow-md transition-all hover:-translate-y-1 hover:shadow-xl">
+          <div class="flex items-start gap-5">
+            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-red-50 text-xl text-brand-red">
+              <i class="fa-solid fa-map-location-dot"></i>
+            </div>
+            <div>
+              <h3 class="text-xs font-bold uppercase tracking-widest text-gray-400">
+                Address
+              </h3>
+              <p class="mt-2 text-base font-bold leading-snug text-gray-800">
+                Mutha Brothers Food<br>
+                Mutha Niwas, Mohan Nagar, MIDC,<br>
+                Chinchwad, Pune – 411019
+              </p>
+              <a
+                href="https://maps.google.com/?cid=17712901662806254982"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mt-3 inline-flex items-center gap-2 text-sm font-bold text-brand-red hover:underline"
+              >
+                <i class="fa-solid fa-diamond-turn-right"></i>
+                Get Directions
+              </a>
+            </div>
           </div>
         </div>
 
-       <!-- Opening Hours -->
-<div
-  class="relative mt-8 rounded-2xl
-         border border-red-700
-         bg-gradient-to-br from-red-600 via-red-700 to-red-800
-         p-6 text-white shadow-xl"
->
+        <!-- Contact Card -->
+        <div class="rounded-2xl border border-gray-100 bg-white p-6 shadow-md transition-all hover:-translate-y-1 hover:shadow-xl">
+          <div class="flex items-start gap-5">
+            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-red-50 text-xl text-brand-red">
+              <i class="fa-solid fa-phone-volume"></i>
+            </div>
+            <div>
+              <h3 class="text-xs font-bold uppercase tracking-widest text-gray-400">
+                Contact
+              </h3>
+              <p class="mt-2 font-mono text-lg font-bold text-gray-800">
+                +91 96070 20711
+              </p>
+              <a
+                href="https://wa.me/919607020711"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mt-3 inline-flex items-center gap-2 rounded-lg border border-green-200 bg-green-50 px-4 py-2 text-sm font-bold text-green-700 transition hover:bg-green-100"
+              >
+                <i class="fa-brands fa-whatsapp text-lg"></i>
+                Chat on WhatsApp
+              </a>
+            </div>
+          </div>
+        </div>
 
-  <!-- Header row -->
-  <div class="mb-6 flex items-center gap-4">
-    <div class="rounded-lg bg-white/20 p-2">
-      <i class="fa-solid fa-clock text-white"></i>
+        <!-- Opening Hours Card -->
+        <div
+          class="rounded-2xl border border-red-200
+                 bg-gradient-to-br from-red-500 to-red-700
+                 p-6 text-white shadow-xl"
+        >
+          <div class="mb-5 flex items-center gap-4">
+            <div class="rounded-lg bg-white/20 p-2">
+              <i class="fa-solid fa-clock"></i>
+            </div>
+            <div>
+              <h4 class="text-xs font-bold uppercase tracking-widest text-red-100">
+                Opening Hours
+              </h4>
+              <p class="text-xs text-red-200">Weekly Schedule</p>
+            </div>
+
+            <div
+              id="store-status-badge"
+              class="ml-auto flex items-center gap-1.5 rounded-md
+                     bg-green-300/20 px-3 py-1
+                     text-xs font-bold uppercase tracking-wide text-green-100"
+            >
+              <span
+                id="store-status-dot"
+                class="h-1.5 w-1.5 rounded-full bg-green-200 animate-pulse"
+              ></span>
+              <span id="store-status-text">Open Now</span>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <div class="flex items-center justify-between border-b border-white/20 pb-3">
+              <span class="text-sm font-semibold text-red-100">Morning</span>
+              <span class="font-mono text-lg font-black">
+                9:30 AM – 1:30 PM
+              </span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-sm font-semibold text-red-100">Evening</span>
+              <span class="font-mono text-lg font-black">
+                3:30 PM – 9:30 PM
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
 
-    <div>
-      <h4 class="text-xs font-bold uppercase tracking-widest text-red-100">
-        Opening Hours
-      </h4>
-      <p class="text-xs font-medium text-red-200">
-        Weekly Schedule
-      </p>
-    </div>
-
-    <!-- Status badge -->
+    <!-- RIGHT: Map -->
     <div
-      id="store-status-badge"
-      class="ml-auto flex items-center gap-1.5 rounded-md
-             border border-green-300/40
-             bg-green-300/20
-             px-3 py-1 text-xs font-bold uppercase
-             tracking-wide text-green-200"
-    >
-      <span
-        id="store-status-dot"
-        class="h-1.5 w-1.5 rounded-full bg-green-300 animate-pulse"
-      ></span>
-      <span id="store-status-text">Open Now</span>
-    </div>
-  </div>
-
-  <!-- Time slots -->
-  <div class="space-y-4">
-    <div class="flex items-center justify-between border-b border-white/20 pb-3">
-      <span class="text-sm font-semibold text-red-100">Morning Slot</span>
-      <span class="font-mono text-lg font-black text-white">
-        9:30 AM – 1:30 PM
-      </span>
-    </div>
-
-    <div class="flex items-center justify-between">
-      <span class="text-sm font-semibold text-red-100">Evening Slot</span>
-      <span class="font-mono text-lg font-black text-white">
-        3:30 PM – 9:30 PM
-      </span>
-    </div>
-  </div>
-
-</div>
-
-
-    <!-- Right: Map -->
-    <div
-      class="group relative h-[500px] w-full overflow-hidden rounded-3xl border-4 border-white bg-white shadow-2xl"
       data-aos="fade-left"
+      class="relative h-[520px] w-full overflow-hidden rounded-3xl border-4 border-white bg-white shadow-2xl"
     >
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3780.3881608775364!2d73.79556367496615!3d18.646569782471555!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b8339c7a13a1%3A0xf5d0de3720fe2586!2sMUTHA%20Brothers%20Food!5e0!3m2!1sen!2sin!4v1766583132203!5m2!1sen!2sin"
@@ -1059,8 +1172,8 @@
         title="Mutha Brothers Store Location"
       ></iframe>
 
-      <div class="pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 opacity-100 transition-opacity duration-500 delay-100 group-hover:opacity-0">
-        <span class="flex items-center gap-2 rounded-full border border-white/10 bg-gray-900/80 px-5 py-2.5 text-sm font-bold text-white backdrop-blur-md shadow-lg">
+      <div class="pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2">
+        <span class="flex items-center gap-2 rounded-full bg-gray-900/80 px-5 py-2.5 text-sm font-bold text-white backdrop-blur shadow-lg">
           <i class="fa-solid fa-hand-pointer animate-bounce"></i>
           Interact with Map
         </span>
@@ -1069,7 +1182,6 @@
 
   </div>
 </section>
-
 
     </main>
 
@@ -1423,6 +1535,7 @@ document.addEventListener("DOMContentLoaded", renderGoogleRating);
 
 </body>
 </html>
+
 
 
 
